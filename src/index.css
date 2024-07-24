@@ -1,13 +1,46 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn-basic {
+    @apply px-8 py-4 text-white rounded-full uppercase
+    text-wide font-extrabold text-xs bg-zinc-950 overflow-hidden;
+  }
+
+  .btn-gradient {
+    z-index: 1;
+    position: relative;
+  }
+
+  .btn-gradient::before {
+    content: "";
+    @apply w-full h-full absolute top-0 left-0 gradient-primary z-[-1] opacity-0 transition-opacity duration-300;
+  }
+
+  .btn-gradient:hover::before {
+    opacity: 1;
+  }
+
+  .gradient-primary {
+    @apply bg-gradient-to-r from-violet-600 to-pink-600;
+  }
+
+  .small-header {
+    @apply font-extrabold tracking-widest uppercase text-sm;
+  }
+
+  .big-header {
+    @apply text-4xl font-bold md:text-6xl lg:text-7xl;
+  }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer utilities {
+  .responsive-margin {
+    @apply sm:w-[600px] md:w-[700px] lg:w-[900px] xl:w-[1000px] 2xl:w-[1400px];
+  }
+
+  .text-wide {
+    letter-spacing: 0.15rem;
+  }
 }
